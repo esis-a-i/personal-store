@@ -1,0 +1,102 @@
+services:
+  backend:
+    image: open-wearables-platform:latest
+    container_name: open-wearables-backend
+    restart: always
+    networks:
+      - open-wearables-net
+      - tipi_main_network
+    x-runtipi:
+      is_main: true
+      internal_port: 8000
+    labels:
+      traefik.enable: true
+      traefik.http.middlewares.open-wearables-web-redirect.redirectscheme.scheme: https
+      traefik.http.services.open-wearables.loadbalancer.server.port: 8000
+      traefik.http.routers.open-wearables-insecure.rule: Host(`${APP_DOMAIN}`)
+      traefik.http.routers.open-wearables-insecure.entrypoints: web
+      traefik.http.routers.open-wearables-insecure.service: open-wearables
+      traefik.http.routers.open-wearables-insecure.middlewares: open-wearables-web-redirect
+      traefik.http.routers.open-wearables.rule: Host(`${APP_DOMAIN}`)
+      traefik.http.routers.open-wearables.entrypoints: websecure
+      traefik.http.routers.open-wearables.service: open-wearables
+      traefik.http.routers.open-wearables.tls.certresolver: myresolver
+      traefik.http.routers.open-wearables-local-insecure.rule: Host(`open-wearables.${LOCAL_DOMAIN}`)
+      traefik.http.routers.open-wearables-local-insecure.entrypoints: web
+      traefik.http.routers.open-wearables-local-insecure.service: open-wearables
+      traefik.http.routers.open-wearables-local-insecure.middlewares: open-wearables-web-redirect
+      traefik.http.routers.open-wearables-local.rule: Host(`open-wearables.${LOCAL_DOMAIN}`)
+      traefik.http.routers.open-wearables-local.entrypoints: websecure
+      traefik.http.routers.open-wearables-local.service: open-wearables
+      traefik.http.routers.open-wearables-local.tls: true
+      runtipi.managed: true
+
+  frontend:
+    image: open-wearables-frontend:dev
+    container_name: open-wearables-frontend
+    restart: always
+    ports:
+      - "3001:3000"
+    networks:
+      - open-wearables-net
+
+  postgres:
+    image: postgres:18
+    container_name: open-wearables-postgres
+    restart: always
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-open_wearables}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB:-open_wearables}
+    volumes:
+      - ${APP_DATA_DIR}/postgres:/var/lib/postgresql/data
+    networks:
+      - open-wearables-net
+
+  redis:
+    image: redis:8
+    container_name: open-wearables-redis
+    restart: always
+    volumes:
+      - ${APP_DATA_DIR}/redis:/data
+    networks:
+      - open-wearables-net
+
+  svix-server:
+    image: svix/svix-server:v1
+    container_name: open-wearables-svix
+    restart: always
+    ports:
+      - "8071:8071"
+    networks:
+      - open-wearables-net
+
+  celery-worker:
+    image: open-wearables-platform:latest
+    container_name: open-wearables-celery-worker
+    restart: always
+    networks:
+      - open-wearables-net
+
+  celery-beat:
+    image: open-wearables-platform:latest
+    container_name: open-wearables-celery-beat
+    restart: always
+    networks:
+      - open-wearables-net
+
+  flower:
+    image: open-wearables-platform:latest
+    container_name: open-wearables-flower
+    restart: always
+    ports:
+      - "5555:5555"
+    networks:
+      - open-wearables-net
+
+networks:
+  open-wearables-net:
+    name: open-wearables-net
+
+x-runtipi:
+  schema_version: 2

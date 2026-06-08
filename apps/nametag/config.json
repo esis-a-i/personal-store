@@ -1,0 +1,47 @@
+{
+  "$schema": "../app-info-schema.json",
+  "name": "Nametag",
+  "id": "nametag",
+  "available": true,
+  "short_desc": "Personal CRM — contacts, groups, relationships.",
+  "author": "mattogodoy",
+  "port": 3000,
+  "categories": ["productivity"],
+  "description": "Nametag is a self-hosted personal CRM for managing contacts, groups, and relationships. Built with Next.js + PostgreSQL + Redis.",
+  "tipi_version": 11,
+  "version": "latest",
+  "source": "https://github.com/mattogodoy/nametag",
+  "exposable": true,
+  "supported_architectures": ["arm64", "amd64"],
+  "form_fields": [
+    {
+      "type": "text",
+      "label": "Database User",
+      "key": "DB_USER",
+      "env_variable": "DB_USER",
+      "default": "nametag"
+    },
+    {
+      "type": "password",
+      "label": "Database Password",
+      "key": "DB_PASSWORD",
+      "env_variable": "DB_PASSWORD"
+    },
+    {
+      "type": "password",
+      "label": "Redis Password",
+      "key": "REDIS_PASSWORD",
+      "env_variable": "REDIS_PASSWORD"
+    },
+    {
+      "type": "text",
+      "label": "Cron Secret",
+      "key": "CRON_SECRET",
+      "env_variable": "CRON_SECRET"
+    }
+  ],
+  "dynamic_config": true,
+  "created_at": 1749400000000,
+  "updated_at": 1749400000000,
+  "min_tipi_version": "4.5.0"
+}

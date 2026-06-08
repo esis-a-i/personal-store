@@ -1,0 +1,38 @@
+services:
+  anythingllm:
+    image: mintplexlabs/anythingllm:latest
+    container_name: anythingllm
+    restart: unless-stopped
+    environment:
+      - STORAGE_DIR=/app/server/storage
+    volumes:
+      - ${APP_DATA_DIR}/storage:/app/server/storage
+    networks:
+      - tipi_main_network
+    x-runtipi:
+      is_main: true
+      internal_port: 3001
+    labels:
+      traefik.enable: true
+      traefik.http.middlewares.anythingllm-web-redirect.redirectscheme.scheme: https
+      traefik.http.services.anythingllm.loadbalancer.server.port: 3001
+      traefik.http.routers.anythingllm-insecure.rule: Host(`${APP_DOMAIN}`)
+      traefik.http.routers.anythingllm-insecure.entrypoints: web
+      traefik.http.routers.anythingllm-insecure.service: anythingllm
+      traefik.http.routers.anythingllm-insecure.middlewares: anythingllm-web-redirect
+      traefik.http.routers.anythingllm.rule: Host(`${APP_DOMAIN}`)
+      traefik.http.routers.anythingllm.entrypoints: websecure
+      traefik.http.routers.anythingllm.service: anythingllm
+      traefik.http.routers.anythingllm.tls.certresolver: myresolver
+      traefik.http.routers.anythingllm-local-insecure.rule: Host(`anythingllm.${LOCAL_DOMAIN}`)
+      traefik.http.routers.anythingllm-local-insecure.entrypoints: web
+      traefik.http.routers.anythingllm-local-insecure.service: anythingllm
+      traefik.http.routers.anythingllm-local-insecure.middlewares: anythingllm-web-redirect
+      traefik.http.routers.anythingllm-local.rule: Host(`anythingllm.${LOCAL_DOMAIN}`)
+      traefik.http.routers.anythingllm-local.entrypoints: websecure
+      traefik.http.routers.anythingllm-local.service: anythingllm
+      traefik.http.routers.anythingllm-local.tls: true
+      runtipi.managed: true
+
+x-runtipi:
+  schema_version: 2

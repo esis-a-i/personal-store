@@ -1,0 +1,21 @@
+{
+  "$schema": "../app-info-schema.json",
+  "name": "Open Wearables",
+  "id": "open-wearables",
+  "available": true,
+  "short_desc": "Open source wearable devices platform.",
+  "author": "open-wearables",
+  "port": 8000,
+  "categories": ["health", "iot"],
+  "description": "Open Wearables is an open source platform for wearable devices with svix webhooks, PostgreSQL, Redis, and a Python backend/frontend.",
+  "tipi_version": 11,
+  "version": "latest",
+  "source": "https://github.com/open-wearables/open-wearables",
+  "exposable": true,
+  "supported_architectures": ["arm64", "amd64"],
+  "form_fields": [],
+  "dynamic_config": true,
+  "created_at": 1749400000000,
+  "updated_at": 1749400000000,
+  "min_tipi_version": "4.5.0"
+}

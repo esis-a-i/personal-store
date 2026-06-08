@@ -1,0 +1,52 @@
+{
+  "$schema": "../app-info-schema.json",
+  "name": "SparkyFitness",
+  "id": "sparkyfitness",
+  "available": true,
+  "short_desc": "Self-hosted fitness, nutrition, and health tracker.",
+  "author": "codewithcj",
+  "port": 3004,
+  "categories": ["health", "fitness"],
+  "description": "SparkyFitness is a complete fitness, nutrition, and health tracking platform with AI-powered food recognition, exercise tracking, and biometric monitoring.",
+  "tipi_version": 11,
+  "version": "latest",
+  "source": "https://github.com/codewithcj/sparkyfitness",
+  "exposable": true,
+  "supported_architectures": ["arm64", "amd64"],
+  "form_fields": [
+    {
+      "type": "password",
+      "label": "DB Password",
+      "key": "SPARKY_FITNESS_DB_PASSWORD",
+      "env_variable": "SPARKY_FITNESS_DB_PASSWORD"
+    },
+    {
+      "type": "password",
+      "label": "App DB Password",
+      "key": "SPARKY_FITNESS_APP_DB_PASSWORD",
+      "env_variable": "SPARKY_FITNESS_APP_DB_PASSWORD"
+    },
+    {
+      "type": "password",
+      "label": "API Encryption Key",
+      "key": "SPARKY_FITNESS_API_ENCRYPTION_KEY",
+      "env_variable": "SPARKY_FITNESS_API_ENCRYPTION_KEY"
+    },
+    {
+      "type": "password",
+      "label": "Better Auth Secret",
+      "key": "BETTER_AUTH_SECRET",
+      "env_variable": "BETTER_AUTH_SECRET"
+    },
+    {
+      "type": "text",
+      "label": "Admin Email",
+      "key": "SPARKY_FITNESS_ADMIN_EMAIL",
+      "env_variable": "SPARKY_FITNESS_ADMIN_EMAIL"
+    }
+  ],
+  "dynamic_config": true,
+  "created_at": 1749400000000,
+  "updated_at": 1749400000000,
+  "min_tipi_version": "4.5.0"
+}
