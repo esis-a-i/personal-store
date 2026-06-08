@@ -41,6 +41,7 @@ services:
       DB_PASSWORD: ${DB_PASSWORD}
       DB_NAME: ${DB_NAME:-nametag}
       DB_HOST: db
+      DB_PORT: 5432
       REDIS_PASSWORD: ${REDIS_PASSWORD}
       CRON_SECRET: ${CRON_SECRET}
     volumes:
