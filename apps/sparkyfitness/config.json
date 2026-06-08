@@ -6,7 +6,7 @@
   "short_desc": "Self-hosted fitness, nutrition, and health tracker.",
   "author": "codewithcj",
   "port": 3004,
-  "categories": ["health", "fitness"],
+  "categories": ["utilities"],
   "description": "SparkyFitness is a complete fitness, nutrition, and health tracking platform with AI-powered food recognition, exercise tracking, and biometric monitoring.",
   "tipi_version": 11,
   "version": "latest",

@@ -6,7 +6,7 @@
   "short_desc": "Personal CRM — contacts, groups, relationships.",
   "author": "mattogodoy",
   "port": 3000,
-  "categories": ["productivity"],
+  "categories": ["utilities"],
   "description": "Nametag is a self-hosted personal CRM for managing contacts, groups, and relationships. Built with Next.js + PostgreSQL + Redis.",
   "tipi_version": 11,
   "version": "latest",

@@ -6,7 +6,7 @@
   "short_desc": "Open source wearable devices platform.",
   "author": "open-wearables",
   "port": 8000,
-  "categories": ["health", "iot"],
+  "categories": ["utilities"],
   "description": "Open Wearables is an open source platform for wearable devices with svix webhooks, PostgreSQL, Redis, and a Python backend/frontend.",
   "tipi_version": 11,
   "version": "latest",
