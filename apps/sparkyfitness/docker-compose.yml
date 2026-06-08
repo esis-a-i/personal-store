@@ -118,7 +118,6 @@ services:
 networks:
   sparkyfitness-network:
     name: sparkyfitness-network
-    external: true
 
 x-runtipi:
   schema_version: 2
