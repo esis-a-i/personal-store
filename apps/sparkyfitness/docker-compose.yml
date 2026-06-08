@@ -62,7 +62,6 @@ services:
       - sparkyfitness-network
     depends_on:
       - sparkyfitness-server
-      - tipi_main_network
     x-runtipi:
       is_main: true
       internal_port: 80
