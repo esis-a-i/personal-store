@@ -35,8 +35,6 @@ services:
     image: open-wearables-frontend:dev
     container_name: open-wearables-frontend
     restart: always
-    ports:
-      - "3001:3000"
     networks:
       - open-wearables-net
 
@@ -66,8 +64,6 @@ services:
     image: svix/svix-server:v1
     container_name: open-wearables-svix
     restart: always
-    ports:
-      - "8071:8071"
     networks:
       - open-wearables-net
 
@@ -89,14 +85,13 @@ services:
     image: open-wearables-platform:latest
     container_name: open-wearables-flower
     restart: always
-    ports:
-      - "5555:5555"
     networks:
       - open-wearables-net
 
 networks:
   open-wearables-net:
     name: open-wearables-net
+    external: true
 
 x-runtipi:
   schema_version: 2

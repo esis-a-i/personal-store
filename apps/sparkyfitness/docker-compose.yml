@@ -49,17 +49,19 @@ services:
       - sparkyfitness-network
 
   sparkyfitness-frontend:
-    image: codewithcj/sparkyfitness:latest
+    image: codewithcj/sparkyfitness:latest # Use pre-built image
     container_name: sparkyfitness-frontend
     restart: always
     environment:
       SPARKY_FITNESS_FRONTEND_URL: ${SPARKY_FITNESS_FRONTEND_URL:-http://localhost:3004}
       SPARKY_FITNESS_SERVER_HOST: sparkyfitness-server
       SPARKY_FITNESS_SERVER_PORT: 3010
-    depends_on:
-      - sparkyfitness-server
+      PUID: 1000
+      GUID: 1000
     networks:
       - sparkyfitness-network
+    depends_on:
+      - sparkyfitness-server
       - tipi_main_network
     x-runtipi:
       is_main: true
@@ -117,6 +119,7 @@ services:
 networks:
   sparkyfitness-network:
     name: sparkyfitness-network
+    external: true
 
 x-runtipi:
   schema_version: 2

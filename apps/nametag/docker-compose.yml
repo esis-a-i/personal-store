@@ -36,8 +36,6 @@ services:
     image: ghcr.io/mattogodoy/nametag:latest
     container_name: nametag-app
     restart: unless-stopped
-    ports:
-      - 3000:3000
     environment:
       DB_USER: ${DB_USER}
       DB_PASSWORD: ${DB_PASSWORD}
@@ -127,6 +125,7 @@ services:
 networks:
   nametag-network:
     name: nametag-network
+    external: true
 
 x-runtipi:
   schema_version: 2
