@@ -38,6 +38,19 @@
       "label": "Cron Secret",
       "key": "CRON_SECRET",
       "env_variable": "CRON_SECRET"
+    },
+    {
+      "type": "text",
+      "label": "NextAuth URL",
+      "key": "NEXTAUTH_URL",
+      "env_variable": "NEXTAUTH_URL",
+      "default": "http://localhost:3000"
+    },
+    {
+      "type": "password",
+      "label": "NextAuth Secret",
+      "key": "NEXTAUTH_SECRET",
+      "env_variable": "NEXTAUTH_SECRET"
     }
   ],
   "dynamic_config": true,
