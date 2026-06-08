@@ -10,7 +10,7 @@ services:
     volumes:
       - ${APP_DATA_DIR}/postgres:/var/lib/postgresql/data
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U ${DB_USER} -d ${DB_NAME:-nametag}"]
+      test: ["CMD-SHELL", "pg_isready -U ${DB_USER} -d ${DB_NAME}"]
       interval: 10s
       timeout: 5s
       retries: 5
@@ -39,7 +39,7 @@ services:
     environment:
       DB_USER: ${DB_USER}
       DB_PASSWORD: ${DB_PASSWORD}
-      DB_NAME: ${DB_NAME:-nametag}
+      DB_NAME: ${DB_NAME}
       DB_HOST: db
       DB_PORT: 5432
       REDIS_PASSWORD: ${REDIS_PASSWORD}
