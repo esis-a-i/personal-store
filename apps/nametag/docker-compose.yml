@@ -6,7 +6,7 @@ services:
     environment:
       POSTGRES_USER: ${DB_USER}
       POSTGRES_PASSWORD: ${DB_PASSWORD}
-      POSTGRES_DB: ${DB_NAME:-nametag}
+      POSTGRES_DB: ${DB_NAME}
     volumes:
       - ${APP_DATA_DIR}/postgres:/var/lib/postgresql/data
     healthcheck:
@@ -93,7 +93,7 @@ services:
     restart: always
     environment:
       - POSTGRES_HOST=db
-      - POSTGRES_DB=${DB_NAME:-nametag}
+      - POSTGRES_DB=${DB_NAME}
       - POSTGRES_USER=${DB_USER}
       - POSTGRES_PASSWORD=${DB_PASSWORD}
       - SCHEDULE=@daily
