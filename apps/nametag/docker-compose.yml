@@ -66,25 +66,6 @@ services:
       is_main: true
       internal_port: 3000
     labels:
-      traefik.enable: true
-      traefik.http.middlewares.nametag-web-redirect.redirectscheme.scheme: https
-      traefik.http.services.nametag.loadbalancer.server.port: 3000
-      traefik.http.routers.nametag-insecure.rule: Host(`${APP_DOMAIN}`)
-      traefik.http.routers.nametag-insecure.entrypoints: web
-      traefik.http.routers.nametag-insecure.service: nametag
-      traefik.http.routers.nametag-insecure.middlewares: nametag-web-redirect
-      traefik.http.routers.nametag.rule: Host(`${APP_DOMAIN}`)
-      traefik.http.routers.nametag.entrypoints: websecure
-      traefik.http.routers.nametag.service: nametag
-      traefik.http.routers.nametag.tls.certresolver: myresolver
-      traefik.http.routers.nametag-local-insecure.rule: Host(`nametag.${LOCAL_DOMAIN}`)
-      traefik.http.routers.nametag-local-insecure.entrypoints: web
-      traefik.http.routers.nametag-local-insecure.service: nametag
-      traefik.http.routers.nametag-local-insecure.middlewares: nametag-web-redirect
-      traefik.http.routers.nametag-local.rule: Host(`nametag.${LOCAL_DOMAIN}`)
-      traefik.http.routers.nametag-local.entrypoints: websecure
-      traefik.http.routers.nametag-local.service: nametag
-      traefik.http.routers.nametag-local.tls: true
       runtipi.managed: true
 
   backup:
